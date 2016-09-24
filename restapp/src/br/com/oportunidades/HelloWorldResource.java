@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.validation.Valid;
+import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -30,12 +32,16 @@ public class HelloWorldResource {
 		repositorio.put(3, new Todo("maria", 40));
 	}
 	
+	
+	//demo02
 	@GET
 	@Produces(MediaType.TEXT_PLAIN)
 	public String hello(){
 		return "Hello";
 	}
 	
+	
+	//demo03
 	@GET
 	@Path("todo")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -43,6 +49,8 @@ public class HelloWorldResource {
 		return new Todo("veloso");
 	}
 	
+	
+	//demo04
 	@GET
 	@Path("todos")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -54,6 +62,8 @@ public class HelloWorldResource {
 		return lista;
 	}
 	
+	
+	//demo5 CRUD
 	@GET
 	@Path("todos/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
@@ -78,6 +88,9 @@ public class HelloWorldResource {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getResponseBy(@PathParam("id") int id){
 		Todo retorno = repositorio.get(id);
+		if(retorno == null){
+			return Response.status(Response.Status.NOT_FOUND).entity("404 Nao encontrado").type(MediaType.APPLICATION_JSON).build();
+		}
 		return Response.status(200).entity(retorno).build();
 	}
 
@@ -86,7 +99,8 @@ public class HelloWorldResource {
 	@Path("atodos/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response post(Todo todo) throws URISyntaxException{
+	@ValidateOnExecution
+	public Response post(@Valid  Todo todo) throws URISyntaxException{
 		int key = repositorio.size() +1;
 		repositorio.put(key, todo);
 		URI uri = new URI("http://localhost:8080/restapp1/rest/hello/todos/"+key);

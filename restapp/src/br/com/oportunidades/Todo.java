@@ -6,6 +6,8 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import com.sun.istack.internal.NotNull;
+
 
 
 @XmlRootElement
@@ -13,6 +15,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Produces(MediaType.APPLICATION_JSON)
 public class Todo {
 
+	@NotNull
 	private String nome;
 	private int idade;
 
