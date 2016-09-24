@@ -7,8 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.validation.Valid;
-import javax.validation.executable.ValidateOnExecution;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -99,8 +97,7 @@ public class HelloWorldResource {
 	@Path("atodos/")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	@ValidateOnExecution
-	public Response post(@Valid  Todo todo) throws URISyntaxException{
+	public Response post(Todo todo) throws URISyntaxException{
 		int key = repositorio.size() +1;
 		repositorio.put(key, todo);
 		URI uri = new URI("http://localhost:8080/restapp1/rest/hello/todos/"+key);
