@@ -1,17 +1,47 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<title>Insert title here</title>
-</head>
-<body>
+<html ng-app="app">
+	<head>
+		<title>Minha aplicacao angular</title>
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" >
+	</head>
+<body ng-controller="MainCtrl as main">
+	<div class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a href="#" class="navbar-brand">Projeto Oportunidade</a>
+			</div>
+		</div>
+	</div>
 
-    <h1>Rest Project</h1>
-    </hr>
-    <a href="rest/hello">Hello</a> |
-    <a href="rest/hello/todo">Todo</a>
+	<div class="container">
+		
+		<div class="jumbotron">
+			<div class="lead">
+				<h2 class="text-center">
+					<i class="glyphicon glyphicon-wrench "></i>
+					Servi&ccedil;os
+				</h2>
+			</div>
+		</div>
 
+		<div class="row">
+			<div class="col-md-12">
+				<li ng-repeat="todo in main.todos" >
+					{{todo.id}} -
+					{{todo.descricao}} - 
+					{{todo.prioridade}}
+					<br/>
+				</li>
 
+				<br/>
+				{{main.todos}}			
+
+			</div>
+		</div>
+	</div>
+
+<script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script src="js/app.js"></script>
 </body>
 </html>
